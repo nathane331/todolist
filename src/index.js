@@ -1,1 +1,7 @@
-console.log("hello");
+//main page
+//imports
+import "./style.css"
+
+
+
+

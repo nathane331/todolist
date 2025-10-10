@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: VictorMono;
+    src: url("Fonts/VictorMono-VariableFont_wght.ttf"), 
+}
+
+@font-face {
+    font-family: VictorMono italic;
+    src: url("Fonts/VictorMono-Italic-VariableFont_wght.ttf");
+}
+
+:root{
+    --background-color: #121212;
+    --border-color: #494949;
+    --secondary-text-color: #aaa;
+    --brand-color: #f1ff5b;
+
+}
+
+body{
+    background-color: var(--background-color);
+    background-image: url(/src/Images/navy.png);
+    color:white;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+
+    font-family: VictorMono;
+    
+}
+
+header{
+    padding:16px;
+    border-bottom: 2px solid var(--border-color);
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.theme-btn{
+    border-style:none;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    width:40px;
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+    background-color: var(--background-color);
+    color: white;
+    align-self: center;
+    vertical-align: text-bottom;
+    cursor: hover;
+    
+    transition: 0.2s ease all;
+}
+
+.theme-btn:hover{
+    background-color: var(--border-color);
+    transform: scale(110%);
+}
+
+.page-title{
+    font-size: 36px;
+    font-weight: 900;
+}
+
+main{
+    flex: 1;
+
+    display:grid;
+    grid-template-columns: minmax(210px, 1fr) 4fr;
+    
+}
+
+.sidebar, .project-content{
+    padding:24px;
+}
+
+.new-project-btn{
+    border-radius: 8px;
+    width: 90%;
+    
+    padding:12px;
+    margin-bottom: 24px;
+    font-size:18px;
+    border-style: none;
+    align-self: center;
+    letter-spacing: 0.05rem;
+    transition: 0.2s ease all;
+}
+
+.new-project-btn:hover{
+    background-color: var(--brand-color);
+    transform: scale(105%);
+}
+
+i{
+    vertical-align: middle;
+}
+
+.sidebar i{
+    font-size: 1.5rem;
+    
+}
+
+.sidebar h2{
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+
+.sidebar ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li{
+    margin:24px;
+    font-family: VictorMono;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    transition: 0.2s ease all;
+}
+
+.sidebar li:hover{
+    margin-left: 36px;
+    color: var(--brand-color);
+}
+
+.sidebar li>i{
+    font-size: 18px;
+    padding-right: 8px;
+}
+
+.project-content{
+   border-left: 2px solid var(--border-color);
+}
