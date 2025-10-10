@@ -1,4 +1,4 @@
-export {Project, Todo, RemoveProject, AddProject};
+export {Project, Todo, RemoveProject, AddProject, projects};
 
 
 let projects = [];
@@ -44,6 +44,7 @@ class Todo{
 
 function AddProject(project){
     projects.unshift(project);
+    console.log(projects);
 
 }
 
@@ -54,35 +55,15 @@ function RemoveProject(id){
         }
     });
 
+    console.log(projects);
+
 }
 
 
-projects[0].addTodo(new Todo("Title", "Desc", priority.High));
+// projects[0].addTodo(new Todo("Title", "Desc", priority.High));
 //projects[0].addTodo(new Todo("Title2", "Desc", priority.Low));
 //projects[0].addTodo(new Todo("Title3", "Desc", priority.Medium));
 //projects[0].addTodo(new Todo("Title4", "Desc", priority.High));
 
-document.querySelector(".new-project-btn").addEventListener('click', () => {AddProject(new Project());} );
 
 
-////////
-
-//display projects
-const projectList = document.querySelector(".project-list");
-
-projects.forEach((project) =>{
-
-    let newProject = document.createElement("li");
-    
-    newProject.classList.add("project");
-   
-
-    let bookIcon = document.createElement("i");
-    bookIcon.classList.add("bx-note-book");
-    bookIcon.classList.add("bx");
-    newProject.appendChild(bookIcon);
-
-     newProject.innerHTML += " " + project.title;
-    projectList.appendChild(newProject);
-    console.log("project added to sidebar");
-});

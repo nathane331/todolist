@@ -61,7 +61,9 @@ header{
 }
 
 .theme-btn:hover{
-    background-color: var(--border-color);
+    color:black;
+    border-color: var(--brand-color);
+    background-color: var(--brand-color);
     transform: scale(110%);
 }
 
@@ -116,12 +118,12 @@ i{
 
 .sidebar ul{
     list-style: none;
-    margin: 0;
+    margin-left: 24px;
     padding: 0;
 }
 
 .sidebar li{
-    margin:24px;
+    margin:24px 0 24px 0;
     font-family: VictorMono;
     font-style: italic;
     font-size: 14px;
@@ -131,14 +133,48 @@ i{
 }
 
 .sidebar li:hover{
-    margin-left: 36px;
+    margin-left: 12px;
     color: var(--brand-color);
 }
+
+
 
 .sidebar li>i{
     font-size: 18px;
     padding-right: 8px;
 }
+
+.project-list-item{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project-delete-btn{
+    color:var(--brand-color);
+    background-color: var(--background-color);
+    border-style: none;
+    width: 20px;
+    height: 20px;
+    transition: 0.2s ease all;
+    transform: scale(105%);
+    display:none;
+}
+
+.project-delete-btn:hover{
+    color: black;
+    background-color: var(--brand-color);
+    border-style: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sidebar li:hover > .project-delete-btn{
+    display:block;
+}
+
 
 .project-content{
    border-left: 2px solid var(--border-color);
