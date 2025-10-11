@@ -178,4 +178,58 @@ i{
 
 .project-content{
    border-left: 2px solid var(--border-color);
+   padding:48px;
+}
+
+.project-display-title{
+    padding-bottom: 12px;
+    padding-left: 24px;
+    border-bottom: 2px dotted var(--border-color);
+}
+
+
+dialog{
+    margin:auto;
+    inset: 0;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding:0;
+    background-color: var(--background-color);
+    color: white;
+    width: 400px;
+    
+}
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+.dialog-content{
+    padding:2rem;
+}
+
+.dialog-title{
+    justify-self: center;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.dialog-actions{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:36px;
+    
+}
+
+.form-group{
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.add-project-input{
+    display:block;
+    width: 100%;
+
 }

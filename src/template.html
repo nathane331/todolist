@@ -18,14 +18,31 @@
          <div class="sidebar">
             <button class="new-project-btn">+ New Project</button>
             <h2 class="my-projects"><i class='bx  bx-book-library'></i> My Projects</h2>
-                <ul class="project-list">
-
-                </ul>
+                <ul class="project-list"></ul>
          </div>
 
-         <div class="project-content">
-            this is my content
-         </div>
+         <div class="project-content"></div>
+
+         <dialog class="add-project-dialog">
+            <div class="dialog-content">
+                
+                <h2 class="dialog-title">Add New Project</h2>
+                <form class="add-project-form">
+                    <div class="form-group">
+                        <label for="projectTitle" class="add-project-label">Project Title</label>
+                        <input type="text" id="projectTitle" class="add-project-input" placeholder="Enter Project Title..." required>
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="cancel-btn" id="newProjectCancelBtn">Cancel</button>
+                        <button type="submit" class="save-btn">Add Project</button>
+                    </div>
+                </form>
+            </div>
+         </dialog>
+
+
+
     </main>
 </body>
 </html>

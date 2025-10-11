@@ -4,15 +4,19 @@ import "./style.css"
 import { AddProject, projects, Project, RemoveProject } from "./app";
 
 
+const projectList = document.querySelector(".project-list");
+const projectContent = document.querySelector(".project-content");
+
 document.querySelector(".new-project-btn").addEventListener('click', function() 
     {
-        AddProject(new Project());
-        UpdateProjectListDisplay();
+        OpenNewProjectDialog();
+        //AddProject(new Project());
+        //UpdateProjectListDisplay();
 
     });
 
 
-const projectList = document.querySelector(".project-list");
+
 
 function UpdateProjectListDisplay(){
     //clear the current screen 
@@ -44,6 +48,11 @@ function UpdateProjectListDisplay(){
         newProjectLabel.appendChild(bookIcon);
         
         newProjectLabel.innerHTML += " " + project.title;
+        newProjectLabel.addEventListener("click", function(){
+            UpdateTodoListDisplay(project);
+        })
+
+
         newProjectItem.appendChild(newProjectLabel);
         newProjectItem.appendChild(projectDeleteButton);
 
@@ -53,9 +62,35 @@ function UpdateProjectListDisplay(){
 
 }
 
-function UpdateTodoListDisplay(){
+function UpdateTodoListDisplay(project){
+    //empty content
+    projectContent.innerHTML ="";
+
+    //add title of project at top
+    let projectTitle = document.createElement("h1");
+    projectTitle.classList.add("project-display-title");
+    projectTitle.textContent = project.title;
+    projectContent.appendChild(projectTitle);
+
+    //for each todo in project, add in list / grid
 
 }
 
-AddProject(new Project());
+///////// DIALOG ///////////
+
+document.querySelector("#newProjectCancelBtn").addEventListener("click",CloseNewProjectDialog);
+
+function OpenNewProjectDialog(){
+    const newProjectDialog = document.querySelector(".add-project-dialog");
+    const projectTitleInput = document.querySelector(".add-project-input");
+
+    newProjectDialog.showModal();
+    projectTitleInput.focus();
+}
+
+function CloseNewProjectDialog(){
+    document.querySelector(".add-project-dialog").close();
+}
+
+AddProject(new Project("My New Project"));
 UpdateProjectListDisplay();

@@ -44,8 +44,6 @@ class Todo{
 
 function AddProject(project){
     projects.unshift(project);
-    console.log(projects);
-
 }
 
 function RemoveProject(id){
@@ -54,8 +52,6 @@ function RemoveProject(id){
             projects.pop(project);
         }
     });
-
-    console.log(projects);
 
 }
 
