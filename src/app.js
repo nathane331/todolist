@@ -1,6 +1,5 @@
 export {Project, Todo, RemoveProject, AddProject, projects};
 
-
 let projects = [];
 
 const priority = {
@@ -13,6 +12,7 @@ class Project{
     constructor(projectTitle = "New Project", todos = []){
         this.title  = projectTitle;
         this.todos = todos;
+        this.creationDate = new Date();
         this.id = "project-"+crypto.randomUUID();
         
     }
@@ -29,7 +29,7 @@ class Project{
             }
         });
     }
-
+    
 }
 
 class Todo{
@@ -44,6 +44,7 @@ class Todo{
 
 function AddProject(project){
     projects.unshift(project);
+    
 }
 
 function RemoveProject(id){

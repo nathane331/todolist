@@ -17,15 +17,16 @@
 :root{
     --background-color: #121212;
     --border-color: #494949;
+    --main-text-color:#FFF;
+    --highlighted-text-color: #000;
     --secondary-text-color: #aaa;
     --brand-color: #f1ff5b;
-
 }
 
 body{
     background-color: var(--background-color);
     background-image: url(/src/Images/navy.png);
-    color:white;
+    color:var(--main-text-color);
     height: 100vh;
     display:flex;
     flex-direction: column;
@@ -52,7 +53,7 @@ header{
     padding: 8px;
     font-size: 18px;
     background-color: var(--background-color);
-    color: white;
+    color: var(--main-text-color);
     align-self: center;
     vertical-align: text-bottom;
     cursor: hover;
@@ -61,7 +62,7 @@ header{
 }
 
 .theme-btn:hover{
-    color:black;
+    color:var(--highlighted-text-color);
     border-color: var(--brand-color);
     background-color: var(--brand-color);
     transform: scale(110%);
@@ -76,9 +77,10 @@ main{
     flex: 1;
 
     display:grid;
-    grid-template-columns: minmax(210px, 1fr) 4fr;
+    grid-template-columns: minmax(260px, 1fr) 4fr;
     
 }
+
 
 .sidebar, .project-content{
     padding:24px;
@@ -162,7 +164,7 @@ i{
 }
 
 .project-delete-btn:hover{
-    color: black;
+    color: var(--highlighted-text-color);
     background-color: var(--brand-color);
     border-style: none;
     width: 20px;
@@ -175,6 +177,25 @@ i{
     display:block;
 }
 
+.selected-project{
+    background-color: var(--brand-color);
+    color: var(--highlighted-text-color);
+    padding:4px;
+    border-radius: 4px;
+}
+
+.selected-project > .project-list-title{
+    color:var(--highlighted-text-color);
+}
+.selected-project > .project-delete-btn{
+    color: var(--highlighted-text-color);
+    background-color: var(--brand-color);
+}
+.selected-project > .project-delete-btn:hover{
+    color: var(--brand-color);
+    background-color: var(--highlighted-text-color);
+    
+}
 
 .project-content{
    border-left: 2px solid var(--border-color);
@@ -187,8 +208,15 @@ i{
     border-bottom: 2px dotted var(--border-color);
 }
 
+.project-date{
+    padding-top:3px;
+    font-size: 0.8em;
+    color:var(--secondary-text-color);
 
-dialog{
+}
+
+
+/* dialog{
     margin:auto;
     inset: 0;
     border: 2px solid var(--border-color);
@@ -232,4 +260,4 @@ dialog::backdrop{
     display:block;
     width: 100%;
 
-}
+} */
