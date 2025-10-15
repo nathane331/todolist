@@ -1,12 +1,13 @@
 //main page
 //imports
 import "./style.css"
-import { AddProject, projects, Project, RemoveProject } from "./app";
+import { AddProject, projects, Project, RemoveProject, Todo, priority } from "./app";
 import { format } from "date-fns";
 
 
 const projectList = document.querySelector(".project-list");
-const projectContent = document.querySelector(".project-content");
+const projectHeader = document.querySelector(".project-header");
+const todoList = document.querySelector(".todo-list");
 
 let selectedProjectID; //id of selected project
 
@@ -52,84 +53,112 @@ function UpdateProjectListDisplay(){
         projectDeleteButton.addEventListener('click', function(){
                 RemoveProject(project.id);
                 UpdateProjectListDisplay();
+                UpdateTodoListDisplay(project);
 
             });
 
         newProjectLabel.appendChild(bookIcon);
         
         newProjectLabel.innerHTML += " " + project.title;
-        
+
+        newProjectItem.appendChild(newProjectLabel);
+        newProjectItem.appendChild(projectDeleteButton);
+
+        projectList.appendChild(newProjectItem);
+        console.log(project.title + " added to sidebar");
+
+
+        if(selectedProjectID === project.id){
+            newProjectItem.classList.add("selected-project");
+        }
+
         newProjectItem.addEventListener("click", function(){
             selectedProjectID = project.id;
             console.log(selectedProjectID);
+            UpdateTodoListDisplay(project);
 
             projectList.querySelectorAll("li.project-list-item").forEach((listItem)=>{
                 listItem.classList.remove("selected-project");
             });
 
             newProjectItem.classList.add("selected-project");
-            UpdateTodoListDisplay(project);
-            
         })
-
-        if(selectedProjectID === project.id){
-            newProjectItem.classList.add("selected-project");
-        }
-
-        newProjectItem.appendChild(newProjectLabel);
-        newProjectItem.appendChild(projectDeleteButton);
-
-        projectList.appendChild(newProjectItem);
-        console.log("project added to sidebar");
     });
 
 }
 
 function UpdateTodoListDisplay(project){
     //empty content
-    projectContent.innerHTML ="";
+    projectHeader.innerHTML ="";
+    todoList.innerHTML = "";
+    
 
     //add title of project at top
     let projectTitle = document.createElement("h1");
     projectTitle.classList.add("project-display-title");
     projectTitle.setAttribute("contenteditable", true);
     projectTitle.textContent = project.title;
-    projectContent.appendChild(projectTitle);
+    projectHeader.appendChild(projectTitle);
 
-    projectTitle.focus();
+    //projectTitle.focus();
 
-        document.addEventListener('"keydown"', event => {
+        projectTitle.addEventListener("keydown", event => {
             if(document.activeElement === projectTitle && event.key === "Enter" )
             {
                 projectTitle.blur();
-                project.title = projectTitle.textContent;
-                projectTitle.textContent = project.title;
-                UpdateProjectListDisplay();
+                
             }
+        })
+
+        projectTitle.addEventListener('blur', function(){
+            if(projectTitle.textContent === '')
+            {
+                projectTitle.textContent = "New Project";
+            }
+            project.title = projectTitle.textContent;
+            UpdateProjectListDisplay();
         })
 
     let projectDate = document.createElement("h5");
     projectDate.classList.add("project-date");
     projectDate.textContent = "Created at " + format(project.creationDate, "h:mm:ss bbbb - MMM do, yyyy");
-    projectContent.appendChild(projectDate);
+    projectHeader.appendChild(projectDate);
+
+    project.todos.forEach((todo) => {
+        DisplayTodo(todo);
+    });
 
 }
 
-///////// DIALOG ///////////
 
-//document.querySelector("#newProjectCancelBtn").addEventListener("click",CloseNewProjectDialog);
+function DisplayTodo(todo){
+    let todoItem = document.createElement("li");
+    todoItem.classList.add("todo-item");
+    let todoTitle = document.createElement("h3");
+    todoTitle.textContent = todo.title;
+    let todoDesc = document.createElement("p");
+    todoDesc.textContent = todo.description;
 
-// function OpenNewProjectDialog(){
-//     const newProjectDialog = document.querySelector(".add-project-dialog");
-//     const projectTitleInput = document.querySelector(".add-project-input");
+    let todoCreationDate = document.createElement("p");
+    todoCreationDate.classList.add("todo-creation-date");
+    todoCreationDate.textContent = "Created " + format(todo.creationDate, "h:mm:ss bbbb - MMM do, yyyy");
 
-//     newProjectDialog.showModal();
-//     projectTitleInput.focus();
-// }
 
-// function CloseNewProjectDialog(){
-//     document.querySelector(".add-project-dialog").close();
-// }
+
+    todoItem.appendChild(todoTitle);
+    todoItem.appendChild(todoDesc);
+    todoItem.appendChild(todoCreationDate);
+
+    todoList.appendChild(todoItem);
+
+
+}
+
+
 
 AddProject(new Project("tailored suits"));
+projects[0].addTodo(new Todo("Title this is ", "Desc", priority.High));
+projects[0].addTodo(new Todo("Title", "Desc", priority.High));
+projects[0].addTodo(new Todo("Title", "Desc", priority.High));
 UpdateProjectListDisplay();
+console.log(projects[0]);

@@ -1,8 +1,8 @@
-export {Project, Todo, RemoveProject, AddProject, projects};
+export {Project, Todo, RemoveProject, AddProject, projects, priority};
 
 let projects = [];
 
-const priority = {
+let priority = {
     Low: 'low',
     Medium: 'medium',
     High: 'high'
@@ -19,6 +19,7 @@ class Project{
 
     addTodo(todo){
         this.todos.unshift(todo); //pass in a todo that was created at the UI
+        
 
     }
 
@@ -38,6 +39,7 @@ class Todo{
         this.description = description;
         this.priority = priority;
         this.id = "todo-"+crypto.randomUUID();
+        this.creationDate = new Date();
     }
 }
 
@@ -57,7 +59,8 @@ function RemoveProject(id){
 }
 
 
-// projects[0].addTodo(new Todo("Title", "Desc", priority.High));
+
+//console.log(projects[0]);
 //projects[0].addTodo(new Todo("Title2", "Desc", priority.Low));
 //projects[0].addTodo(new Todo("Title3", "Desc", priority.Medium));
 //projects[0].addTodo(new Todo("Title4", "Desc", priority.High));
