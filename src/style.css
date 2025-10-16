@@ -22,6 +22,7 @@
     --highlighted-text-color: #000;
     --secondary-text-color: #c4c4c4;
     --brand-color: #f1ff5b;
+    
 }
 
 body{
@@ -96,6 +97,7 @@ main{
     padding:12px;
     margin-bottom: 24px;
     font-size:18px;
+    font-weight: bold;
     border-style: none;
     align-self: center;
     letter-spacing: 0.05rem;

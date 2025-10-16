@@ -34,10 +34,10 @@ class Project{
 }
 
 class Todo{
-    constructor(title = "My Task", description = "Description of my task.", priority = priority.Low, completionStatus = false){
+    constructor(title = "My Task", description = "Description of my task."){
         this.title = title;
         this.description = description;
-        this.priority = priority;
+        this.priority = priority.High;
         this.dueDate = "";
 
         this.id = "todo-"+crypto.randomUUID();
@@ -61,13 +61,5 @@ function RemoveProject(id){
     });
 
 }
-
-
-
-//console.log(projects[0]);
-//projects[0].addTodo(new Todo("Title2", "Desc", priority.Low));
-//projects[0].addTodo(new Todo("Title3", "Desc", priority.Medium));
-//projects[0].addTodo(new Todo("Title4", "Desc", priority.High));
-
 
 

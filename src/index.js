@@ -28,12 +28,8 @@ function UpdateProjectListDisplay(){
     //clear the current screen 
     projectList.innerHTML = "";
     
-    
-
     // and update the project list
     projects.forEach((project) =>{
-
-        
 
         let newProjectItem = document.createElement("li");
         newProjectItem.classList.add("project-list-item");
@@ -130,6 +126,12 @@ function UpdateTodoListDisplay(project){
     let newTodoButton = document.createElement("button");
     newTodoButton.classList.add("new-todo-btn");
     newTodoButton.textContent = "+ Create a New Task";
+    
+    newTodoButton.addEventListener("click", function(){
+        project.addTodo(new Todo());
+        UpdateTodoListDisplay(project);
+        console.log(project);
+    });
 
     newTodoSection.appendChild(newTodoButton);
     todoList.appendChild(newTodoSection);
@@ -202,9 +204,9 @@ function DisplayTodo(todo){
 
 
 
-AddProject(new Project("tailored suits"));
-projects[0].addTodo(new Todo("Title this is ", "this is a description of the content", priority.High));
-projects[0].addTodo(new Todo("Title", "Desc", priority.High));
-projects[0].addTodo(new Todo("Title", "Desc", priority.High));
+AddProject(new Project("I Know It's Over"));
+
+projects[0].addTodo(new Todo());
+projects[0].addTodo(new Todo());
 UpdateProjectListDisplay();
 console.log(projects[0]);
