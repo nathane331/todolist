@@ -34,12 +34,16 @@ class Project{
 }
 
 class Todo{
-    constructor(title = "My Task", description = "Description of my task.", priority = priority.Low){
+    constructor(title = "My Task", description = "Description of my task.", priority = priority.Low, completionStatus = false){
         this.title = title;
         this.description = description;
         this.priority = priority;
+        this.dueDate = "";
+
         this.id = "todo-"+crypto.randomUUID();
         this.creationDate = new Date();
+        this.completionStatus = false;
+
     }
 }
 

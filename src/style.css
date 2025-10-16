@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: VictorMono;
 }
 
 @font-face {
@@ -57,6 +58,7 @@ header{
     align-self: center;
     vertical-align: text-bottom;
     cursor: hover;
+    font-family: none;
     
     transition: 0.2s ease all;
 }
@@ -66,6 +68,7 @@ header{
     border-color: var(--brand-color);
     background-color: var(--brand-color);
     transform: scale(110%);
+    font-family: none;
 }
 
 .page-title{
@@ -218,20 +221,105 @@ i{
 }
 
 .project-details{
-    padding:0 56px 0 56px;
+    padding:48px 56px 0 56px;
 }
 
-.todo-item{
+.new-todo-section{
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.new-todo-btn{
+    border-style: none;
+    background-color: var(--main-text-color);
+    color: var(--highlighted-text-color);
+    font-size: 1.5rem;
+    font-family: VictorMono;
+    font-weight: bold;
+
+    border-radius: 8px;
+    width: 100%;
+    
+    padding:8px;
+    align-self: center;
+    letter-spacing: 0.05rem;
+    transition: 0.2s ease all;
+}
+
+.new-todo-btn:hover{
+    background-color: var(--brand-color);
+    transform: scale(105%);
+}
+
+.dropdown-btn{
+    border-style:none;
+    border: none;
+    border-radius: 8px;
+    width:40px;
+    height: 40px;
+    
+    font-size: 2.5rem;
+    background-color: transparent;
+    color: var(--secondary-text-color);
+    align-self: center;
+    vertical-align: text-bottom;
+    cursor: hover;
+    font-family: none;
     display:Flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:first baseline;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
+    
+    transition: 0.2s ease all;
+
+}
+
+.dropdown-btn:hover{
+    transform: scale(130%);
+}
+.dropdown-btn:hover.dropdown-active{
+    transform: scale(130%);
+    transform: rotate(90deg);
+}
+
+.dropdown-active{
+    transform: rotate(90deg);
+}
+.todo-item{
+    display:flex;
+    flex-direction: column;
+
     gap: 36px;
     border-bottom: 1px solid var(--border-color);
     padding-top: 48px;
     padding-bottom: 8px;
+}
 
+.todo-header{
+    display:grid;
+    grid-template-columns: 50px 50px 1fr;
+    max-width: 100%;
+    align-items: center;
+}
+
+.todo-extended-content{
+    display: none;
+    
+}
+
+.show{
+    padding-left: 50px;
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+
+.completion-checkbox{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: black;
+    accent-color: var(--brand-color);
+    color: var(--highlighted-text-color);
 }
 
 

@@ -124,6 +124,17 @@ function UpdateTodoListDisplay(project){
     projectDate.textContent = "Created at " + format(project.creationDate, "h:mm:ss bbbb - MMM do, yyyy");
     projectHeader.appendChild(projectDate);
 
+    let newTodoSection = document.createElement("div");
+    newTodoSection.classList.add("new-todo-section");
+
+    let newTodoButton = document.createElement("button");
+    newTodoButton.classList.add("new-todo-btn");
+    newTodoButton.textContent = "+ Create a New Task";
+
+    newTodoSection.appendChild(newTodoButton);
+    todoList.appendChild(newTodoSection);
+
+
     project.todos.forEach((todo) => {
         DisplayTodo(todo);
     });
@@ -132,22 +143,57 @@ function UpdateTodoListDisplay(project){
 
 
 function DisplayTodo(todo){
+
     let todoItem = document.createElement("li");
     todoItem.classList.add("todo-item");
+
+    let todoHeader = document.createElement("div");
+    todoHeader.classList.add("todo-header");
+
+    let todoExtendedContent = document.createElement("div");
+    todoExtendedContent.classList.add("todo-extended-content");
+
+    let dropdownButton = document.createElement("button");
+    dropdownButton.innerHTML = "<i class='bx  bx-caret-right'  ></i> ";
+    dropdownButton.classList.add("dropdown-btn");
+    dropdownButton.addEventListener('click', ()=> {
+            
+        todoExtendedContent.classList.toggle("show");
+        dropdownButton.classList.toggle("dropdown-active");
+    });
+
+    const completionStatus = document.createElement("input");
+    completionStatus.classList.add("completion-checkbox");
+    completionStatus.setAttribute('type', "checkbox");
+    completionStatus.addEventListener('change', ()=> {
+            
+            todo.completionStatus = !todo.completionStatus;
+            console.log(projects[0]);
+        });
+
     let todoTitle = document.createElement("h3");
+    todoTitle.classList.add("todo-title");
     todoTitle.textContent = todo.title;
+
     let todoDesc = document.createElement("p");
+    todoDesc.classList.add("todo-description");
     todoDesc.textContent = todo.description;
 
     let todoCreationDate = document.createElement("p");
     todoCreationDate.classList.add("todo-creation-date");
     todoCreationDate.textContent = "Created " + format(todo.creationDate, "h:mm:ss bbbb - MMM do, yyyy");
 
+    
+    
+    todoHeader.appendChild(dropdownButton);
+    todoHeader.appendChild(completionStatus);
+    todoHeader.appendChild(todoTitle);
 
+    todoExtendedContent.appendChild(todoDesc);
+    todoExtendedContent.appendChild(todoCreationDate);
 
-    todoItem.appendChild(todoTitle);
-    todoItem.appendChild(todoDesc);
-    todoItem.appendChild(todoCreationDate);
+    todoItem.appendChild(todoHeader);
+    todoItem.appendChild(todoExtendedContent);
 
     todoList.appendChild(todoItem);
 
@@ -157,7 +203,7 @@ function DisplayTodo(todo){
 
 
 AddProject(new Project("tailored suits"));
-projects[0].addTodo(new Todo("Title this is ", "Desc", priority.High));
+projects[0].addTodo(new Todo("Title this is ", "this is a description of the content", priority.High));
 projects[0].addTodo(new Todo("Title", "Desc", priority.High));
 projects[0].addTodo(new Todo("Title", "Desc", priority.High));
 UpdateProjectListDisplay();
